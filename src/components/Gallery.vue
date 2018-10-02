@@ -4,7 +4,7 @@
     <img src="../assets/loading.gif" alt="Loading..." class="loading">
   </div>
   <div v-else class="gallery">
-    <gallery-image v-for="(image, index) in images" :image="image.preview" @click.native="showLightbox(index)" :key="image.id"></gallery-image>
+    <gallery-image v-for="image in images" :image="image.preview" :index="image.index" :key="image.id"></gallery-image>
   </div>
 </div>
 
@@ -26,11 +26,6 @@ export default {
     },
     images() {
       return this.$store.state.images;
-    }
-  },
-  methods: {
-    showLightbox(index) {
-      this.$store.commit('setCurrentImageIndex', index);
     }
   }
 };

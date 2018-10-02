@@ -3,12 +3,12 @@
   <div v-if="show">
     <div class="lightbox">
       <div class="container">
-        <gallery-image :image="currentImage"></gallery-image>
+        <gallery-image :image="currentImage" :index="currentIndex"></gallery-image>
 
         <div class="nav">
-          <gallery-image :image="prevImage" class="image small"></gallery-image>
+          <gallery-image :image="prevImage" :index="currentIndex - 1" class="image small"></gallery-image>
           <span class="close" @click="closeLightbox">&times;</span>
-          <gallery-image :image="nextImage" class="image small"></gallery-image>
+          <gallery-image :image="nextImage" :index="currentIndex + 1" class="image small"></gallery-image>
         </div>
       </div>
     </div>
@@ -22,9 +22,13 @@ import GalleryImage from './GalleryImage.vue';
 
 export default {
   computed: {
+    currentIndex() {
+      return this.$store.state.currentImageIndex;
+    },
     show() {
-      const imageIsSelected = this.$store.state.currentImageIndex !== -1;
+      const imageIsSelected = this.currentIndex !== -1;
       if (imageIsSelected) {
+        //disable scrolling for body
         document.documentElement.style.overflow = 'hidden';
       } else {
         document.documentElement.style.overflow = 'auto';
@@ -33,15 +37,15 @@ export default {
       return imageIsSelected;
     },
     currentImage() {
-      //disable scrolling
+      const image = this.$store.state.images[this.currentIndex];
+      if (image) {
+        return image.original;
+      }
 
-      return this.$store.state.images[this.$store.state.currentImageIndex]
-        .original;
+      return null;
     },
     prevImage() {
-      const image = this.$store.state.images[
-        this.$store.state.currentImageIndex - 1
-      ];
+      const image = this.$store.state.images[this.currentIndex - 1];
       if (image) {
         return image.preview;
       }
@@ -49,9 +53,7 @@ export default {
       return null;
     },
     nextImage() {
-      const image = this.$store.state.images[
-        this.$store.state.currentImageIndex + 1
-      ];
+      const image = this.$store.state.images[this.currentIndex + 1];
       if (image) {
         return image.preview;
       }
@@ -119,7 +121,8 @@ export default {
 }
 
 .image.small {
-  width: 100%;
+  width: 25%;
+  margin: 0;
 }
 
 .close {

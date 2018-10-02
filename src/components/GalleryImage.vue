@@ -1,7 +1,7 @@
 <template>
 <div>
   <div v-if="image != null" class="image-container">
-    <img class="image" :src="image" alt=""/>
+    <img class="image" :src="image" @click="showLightbox(index)" alt=""/>
   </div>
 </div>
 
@@ -10,7 +10,12 @@
 
 <script>
 export default {
-  props: ['image']
+  props: ['image', 'index'],
+  methods: {
+    showLightbox(index) {
+      this.$store.commit('setCurrentImageIndex', index);
+    }
+  }
 };
 </script>
 
