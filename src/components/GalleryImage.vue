@@ -1,9 +1,10 @@
 <template>
-<div class="image-container">
-<img class="image" :src="image.original" alt=""/>
-
+<div>
+  <div v-if="image != null" class="image-container">
+    <img class="image" :src="image" alt=""/>
+  </div>
 </div>
-    
+
     
 </template>
 
@@ -15,11 +16,13 @@ export default {
 
 <style>
 .image-container {
+  cursor: pointer;
   display: inline-block;
   background-color: #eee;
   padding: 10px;
-  margin: 10px;
+  margin: 10px 0;
   border-radius: 5px;
+  width: 100%;
 }
 
 .image {

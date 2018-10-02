@@ -1,26 +1,34 @@
 <template>
   <div id="app">
     <gallery></gallery>
+    <lightbox></lightbox>
   </div>
 </template>
 
 <script>
 import Gallery from './components/Gallery.vue';
+import Lightbox from './components/Lightbox.vue';
 
 export default {
   name: 'app',
   components: {
-    Gallery
+    Gallery,
+    Lightbox
   }
 };
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
 }
 
 #app {
+  position: relative;
   min-height: 100vh;
   background: #2bc0e4; /* fallback for old browsers */
   background: -webkit-linear-gradient(
