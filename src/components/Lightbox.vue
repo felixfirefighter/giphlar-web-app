@@ -13,7 +13,6 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 
@@ -78,13 +77,14 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.8);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   padding: 1rem 5vw;
   overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
 @media (min-width: 768px) {
@@ -102,12 +102,6 @@ export default {
 @media (min-width: 1200px) {
   .lightbox {
     padding: 1rem 30vw;
-  }
-}
-
-@media (min-width: 1600px) {
-  .lightbox {
-    padding: 1rem 25vw;
   }
 }
 

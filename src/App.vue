@@ -1,11 +1,14 @@
 <template>
   <div id="app">
+    <navbar/>
     <gallery></gallery>
     <lightbox></lightbox>
+    
   </div>
 </template>
 
 <script>
+import Navbar from './components/Navbar.vue';
 import Gallery from './components/Gallery.vue';
 import Lightbox from './components/Lightbox.vue';
 
@@ -13,7 +16,8 @@ export default {
   name: 'app',
   components: {
     Gallery,
-    Lightbox
+    Lightbox,
+    Navbar
   }
 };
 </script>
@@ -25,6 +29,7 @@ export default {
 
 body {
   margin: 0;
+  font-family: sans-serif;
 }
 
 #app {
@@ -41,5 +46,9 @@ body {
     #eaecc6,
     #2bc0e4
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#scroll-end {
+  width: 100%;
 }
 </style>

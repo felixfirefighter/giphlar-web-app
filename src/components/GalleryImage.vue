@@ -1,9 +1,10 @@
 <template>
-<div>
+<div class="text-center">
   <div v-if="image != null" class="image-container">
     <img class="image" :src="image" @click="showLightbox(index)" alt=""/>
   </div>
 </div>
+
 
     
 </template>
@@ -20,6 +21,10 @@ export default {
 </script>
 
 <style>
+.text-center {
+  text-align: center;
+}
+
 .image-container {
   cursor: pointer;
   display: inline-block;
@@ -27,7 +32,8 @@ export default {
   padding: 10px;
   margin: 10px 0;
   border-radius: 5px;
-  width: 100%;
+  max-width: 100%;
+  text-align: center;
 }
 
 .image {

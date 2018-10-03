@@ -6,22 +6,41 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    search: 'cat',
+    offset: 0,
     images: [],
     currentImageIndex: -1
   },
   mutations: {
+    changeSearch(state, payload) {
+      state.search = payload;
+    },
     addImage(state, payload) {
       state.images.push(payload);
     },
     setCurrentImageIndex(state, payload) {
       state.currentImageIndex = payload;
+    },
+    incrementOffset(state) {
+      state.offset++;
+    },
+    clearImages(state) {
+      state.images = [];
     }
   },
   actions: {
     getImages(context) {
       return new Promise(async (resolve, reject) => {
         try {
-          const res = await axios.get('https://localhost:44364/api/giphy');
+          const res = await axios.get('https://localhost:44364/api/giphy', {
+            params: {
+              q: context.state.search,
+              offset: context.state.offset
+            }
+          });
+
+          context.commit('incrementOffset');
+
           res.data.data.forEach(elem => {
             const image = {
               id: elem.id,
