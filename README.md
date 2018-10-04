@@ -1,4 +1,4 @@
-# cdon.web
+# Giphlar Web App
 
 ## Project setup
 ```
