@@ -7,7 +7,7 @@
     <gallery-image v-for="image in images" :image="image.preview" :index="image.index" :key="image.id"></gallery-image>
   </div>
   <div id="scroll-end">
-      <loading v-if="loading"></loading>
+      <loading v-if="loading && !initialLoading"></loading>
   </div>
 </div>
 
@@ -17,6 +17,7 @@
 import GalleryImage from './GalleryImage.vue';
 import Loading from './Loading.vue';
 import scrollMonitor from 'scrollmonitor';
+import randomWords from 'random-words';
 
 export default {
   data() {
@@ -25,6 +26,7 @@ export default {
     };
   },
   created() {
+    this.$store.commit('changeSearch', randomWords());
     this.$store.dispatch('getImages');
   },
   components: {

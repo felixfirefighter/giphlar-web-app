@@ -32,12 +32,15 @@ export default new Vuex.Store({
     getImages(context) {
       return new Promise(async (resolve, reject) => {
         try {
-          const res = await axios.get('https://localhost:44364/api/giphy', {
-            params: {
-              q: context.state.search,
-              offset: context.state.offset
+          const res = await axios.get(
+            `${process.env.VUE_APP_API_URL}/api/giphy`,
+            {
+              params: {
+                q: context.state.search,
+                offset: context.state.offset
+              }
             }
-          });
+          );
 
           context.commit('incrementOffset');
 

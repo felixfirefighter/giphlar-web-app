@@ -57,7 +57,10 @@ export default {
         return image.preview;
       }
 
-      return null;
+      // final image of the current list, call getImages to add more images
+      this.$store.dispatch('getImages').then(() => {
+        return this.$store.state.images[this.currentIndex + 1].preview;
+      });
     }
   },
   methods: {

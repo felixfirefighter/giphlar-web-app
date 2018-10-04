@@ -19,6 +19,7 @@
     "@vue/cli-plugin-babel": "^3.0.3",
     "@vue/cli-plugin-eslint": "^3.0.3",
     "@vue/cli-service": "^3.0.3",
+    "express": "^4.16.3",
     "vue-template-compiler": "^2.5.17"
   },
   "eslintConfig": {
